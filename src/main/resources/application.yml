@@ -1,0 +1,25 @@
+server:
+  port: 8761
+logging:
+  level:
+    org.springframework: info
+    org.springframework.security: debug
+spring:
+  application:
+    name: eureka-server
+  http:
+    encoding:
+      force: true
+    servlet:
+      multipart:
+        max-file-size: 100MB # 最大文件大小
+        max-request-size: 100MB # 最大请求大小
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+
+eureka:
+  client:
+     register-with-eureka: false #是否注册自身到eureka服务器
+     fetch-registry: false
+     serviceUrl:
+        defaultZone: http://127.0.0.1:8761/eureka/

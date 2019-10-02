@@ -1,0 +1,46 @@
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.icbc'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+
+buildscript {
+	ext {
+		springBootVersion = '2.1.8.RELEASE'
+	}
+	repositories {
+		mavenLocal()
+		maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+		maven { url "https://repo.spring.io/milestone" }
+
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+
+repositories {
+	mavenLocal()
+	maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+	maven { url "https://repo.spring.io/milestone" }
+	
+}
+
+ext['springCloudVersion'] = 'Greenwich.M3'
+
+dependencies {
+	implementation('org.springframework.cloud:spring-cloud-starter-netflix-eureka-server')
+	testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
